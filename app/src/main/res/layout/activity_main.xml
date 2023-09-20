@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="416dp"
+        android:layout_height="223dp"
+        app:layout_constraintBottom_toBottomOf="@+id/numQuestionsValueTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/hated"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp" />
+
+    <TextView
+        android:id="@+id/difficultyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select difficulty:"
+        android:textColor="@color/grey"
+
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/operationTextView"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints" />
+
+
+    <TextView
+        android:id="@+id/operationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:text="Select operation:"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/numQuestionsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
+        android:text="Number of questions"
+        android:textColor="@color/grey"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/minusButton"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp" />
+
+    <TextView
+        android:id="@+id/numQuestionsValueTextView"
+        android:layout_width="85dp"
+        android:layout_height="64dp"
+        android:layout_below="@+id/numQuestionsTextView"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="8dp"
+        android:text="10"
+        android:textAlignment="center"
+
+        android:textColor="@color/grey"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        app:layout_constraintStart_toEndOf="@+id/minusButton"
+        app:layout_constraintTop_toBottomOf="@+id/numQuestionsTextView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/minusButton"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="85dp"
+        android:layout_height="64dp"
+        android:layout_margin="2dp"
+        android:layout_marginBottom="85dp"
+        android:backgroundTint="@color/white"
+        android:onClick="onEqualClick"
+        android:text="-"
+
+        android:textColor="@color/grey"
+
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="36dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/plusButton"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="85dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        android:onClick="onEqualClick"
+        android:text="+"
+
+        android:textColor="@color/grey"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/startButton"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/numQuestionsValueTextView"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/startButton"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+        android:layout_width="410dp"
+        android:layout_height="95dp"
+        android:layout_margin="2dp"
+        android:backgroundTint="@color/grey"
+        android:onClick="onEqualClick"
+        android:text="START"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+
+    <RadioGroup
+        android:id="@+id/operationRadioGroup"
+        android:layout_width="398dp"
+        android:layout_height="151dp"
+        android:layout_below="@+id/difficultyRadioGroup"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toBottomOf="@+id/operationTextView"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp">
+
+
+        <RadioButton
+            android:id="@+id/additionRadioButton"
+            android:layout_width="137dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="256dp"
+            android:layout_marginTop="8dp"
+            android:text="Addition"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/operationTextView"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/multiplicationRadioButton"
+            android:layout_width="137dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="256dp"
+            android:layout_marginTop="4dp"
+            android:text="Multiplication"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/additionRadioButton"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/divisionRadioButton"
+            android:layout_width="137dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="8dp"
+            android:text="Division"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/multiplicationRadioButton"
+            tools:ignore="MissingConstraints" />
+
+        <RadioButton
+            android:id="@+id/subtractionRadioButton"
+            android:layout_width="137dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="260dp"
+            android:layout_marginTop="4dp"
+            android:text="Subtraction"
+
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divisionRadioButton"
+            tools:ignore="MissingConstraints" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/difficultyRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numQuestionsTextView"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintTop_toBottomOf="@+id/difficultyTextView"
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp">
+
+
+        <RadioButton
+            android:id="@+id/easyRadioButton"
+            android:layout_width="93dp"
+            android:layout_height="24dp"
+            android:text="Easy"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@+id/difficultyTextView"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="28dp" />
+
+        <RadioButton
+            android:id="@+id/mediumRadioButton"
+            android:layout_width="117dp"
+            android:layout_height="26dp"
+            android:text="Medium"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/easyRadioButton"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <RadioButton
+            android:id="@+id/hardRadioButton"
+            android:layout_width="100dp"
+            android:layout_height="19dp"
+            android:text="Hard"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mediumRadioButton"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-2dp" />
+    </RadioGroup>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
