@@ -1,6 +1,8 @@
 package com.example.project3
 
+import android.app.Activity
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import kotlin.random.Random
 
 class QuestionActivity : AppCompatActivity() {
@@ -23,6 +26,10 @@ class QuestionActivity : AppCompatActivity() {
     private var correctAnswers = 0
     private lateinit var operation: String
     private lateinit var difficulty: String
+
+    private var mediaPlayerCorrect: MediaPlayer? = null
+    private var mediaPlayerWrong: MediaPlayer? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,10 @@ class QuestionActivity : AppCompatActivity() {
             // Check the user's answer when the "DONE" button is clicked
             checkAnswer()
         }
+
+        mediaPlayerCorrect = MediaPlayer.create(this, R.raw.correct)
+        mediaPlayerWrong = MediaPlayer.create(this, R.raw.wrongplace)
+
 
         // Generate the first question when the activity starts
         generateQuestion()
@@ -86,10 +97,25 @@ class QuestionActivity : AppCompatActivity() {
         } else {
             // All questions are answered, navigate to the result screen
             val score = "$correctAnswers out of $numberOfQuestions"
-            val intent = Intent(this, ResultActivity::class.java)
-            intent.putExtra("score", score)
-            startActivity(intent)
+            //val intent = Intent(this, ResultActivity::class.java)
+            //intent.putExtra("score", score)
+            //startActivity(intent)
+            //finish()
+
+            val isSuccess = correctAnswers.toDouble() / numberOfQuestions >= 0.8
+
+            // Pass the user's score and success status back to MainActivity
+            val resultIntent = Intent()
+            resultIntent.putExtra("userScore", correctAnswers)
+            resultIntent.putExtra("isSuccess", isSuccess)
+            setResult(RESULT_OK, resultIntent)
+
+            // Release media players
+            mediaPlayerCorrect?.release()
+            mediaPlayerWrong?.release()
+
             finish()
+
         }
     }
 
@@ -102,13 +128,18 @@ class QuestionActivity : AppCompatActivity() {
 
             if (userAnswer == correctAnswer.toString()) {
                 correctAnswers++
+                showToast("Correct. Good work!")
+                playSound(mediaPlayerCorrect)
+            } else {
+                showToast("Wrong")
+                playSound(mediaPlayerWrong)
             }
 
             generateQuestion()
             if (currentQuestion > numberOfQuestions) {
-                navigateToResultActivity() // Navigate to ResultActivity
+                // Navigate back to MainActivity when all questions are answered
+                navigateToResultActivity()
             }
-
         }
     }
 
@@ -134,10 +165,25 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     private fun navigateToResultActivity() {
-        val score = "$correctAnswers out of $numberOfQuestions"
-        val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra("score", score)
-        startActivity(intent)
+        val userScore = (correctAnswers * 100) / numberOfQuestions
+        val isSuccess = userScore >= 80
+        val resultMessage = "You got $correctAnswers out of $numberOfQuestions correct in $operation. ${
+            if (isSuccess) "Good Work!" else "You need to practice more!"
+        }"
+
+        // Create an Intent to return the result to MainActivity
+        val resultIntent = Intent()
+        resultIntent.putExtra("userScore", correctAnswers)
+        resultIntent.putExtra("isSuccess", isSuccess)
+        setResult(if (isSuccess) Activity.RESULT_OK else Activity.RESULT_CANCELED, resultIntent)
         finish()
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun playSound(mediaPlayer: MediaPlayer?) {
+        mediaPlayer?.start()
     }
 }

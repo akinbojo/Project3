@@ -18,31 +18,20 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-3dp" />
 
-    <TextView
-        android:id="@+id/difficultyTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select difficulty:"
-        android:textColor="@color/grey"
-
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/operationTextView"
-        app:layout_constraintHorizontal_bias="0.033"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        tools:ignore="MissingConstraints" />
-
 
     <TextView
-        android:id="@+id/operationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:text="Select operation:"
-        android:textColor="@color/grey"
+        android:id="@+id/resultTextView"
+        android:layout_width="337dp"
+        android:layout_height="47dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="44dp"
+        android:text=""
+        android:textColor="@android:color/black"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/operationRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -188,6 +177,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divisionRadioButton"
             tools:ignore="MissingConstraints" />
+
     </RadioGroup>
 
     <RadioGroup
@@ -235,6 +225,30 @@
             app:layout_constraintTop_toBottomOf="@+id/mediumRadioButton"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="-2dp" />
+
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/operationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select operation:"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="254dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+    <TextView
+        android:id="@+id/difficultyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select difficulty:"
+        android:textColor="@color/grey"
+
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="290dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
